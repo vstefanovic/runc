@@ -1,5 +1,4 @@
-// +build !mips
-// +build !mipsle
+// +build mips mipsle
 // +build linux
 
 package main
@@ -33,7 +32,6 @@ var signalMap = map[string]syscall.Signal{
 	"PWR":    syscall.SIGPWR,
 	"QUIT":   syscall.SIGQUIT,
 	"SEGV":   syscall.SIGSEGV,
-	"STKFLT": syscall.SIGSTKFLT,
 	"STOP":   syscall.SIGSTOP,
 	"SYS":    syscall.SIGSYS,
 	"TERM":   syscall.SIGTERM,
@@ -41,7 +39,6 @@ var signalMap = map[string]syscall.Signal{
 	"TSTP":   syscall.SIGTSTP,
 	"TTIN":   syscall.SIGTTIN,
 	"TTOU":   syscall.SIGTTOU,
-	"UNUSED": syscall.SIGUNUSED,
 	"URG":    syscall.SIGURG,
 	"USR1":   syscall.SIGUSR1,
 	"USR2":   syscall.SIGUSR2,
@@ -62,7 +59,7 @@ Where "<container-id>" is the name for the instance of the container and
 EXAMPLE:
 For example, if the container id is "ubuntu01" the following will send a "KILL"
 signal to the init process of the "ubuntu01" container:
-	 
+
        # runc kill ubuntu01 KILL`,
 	Action: func(context *cli.Context) error {
 		container, err := getContainer(context)
