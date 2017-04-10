@@ -450,11 +450,11 @@ void nsexec(void)
 		if (consolefd != -1) {
 			if (ioctl(consolefd, TIOCSCTTY, 0) < 0)
 				bail("ioctl TIOCSCTTY failed");
-			if (dup3(consolefd, STDIN_FILENO, 0) != STDIN_FILENO)
+			if (dup2(consolefd, STDIN_FILENO) != STDIN_FILENO)
 				bail("failed to dup stdin");
-			if (dup3(consolefd, STDOUT_FILENO, 0) != STDOUT_FILENO)
+			if (dup2(consolefd, STDOUT_FILENO) != STDOUT_FILENO)
 				bail("failed to dup stdout");
-			if (dup3(consolefd, STDERR_FILENO, 0) != STDERR_FILENO)
+			if (dup2(consolefd, STDERR_FILENO) != STDERR_FILENO)
 				bail("failed to dup stderr");
 		}
 
